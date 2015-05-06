@@ -108,7 +108,7 @@ describe ContactsController do
     end
   end
 
-  describe 'PUT #update' do
+  describe 'PATCH #update' do
     before :each do
       @contact = create(:contact,
       firstname: 'Lawrence', lastname: 'Smith')
@@ -154,7 +154,16 @@ describe ContactsController do
   end
 
   describe 'DELETE #destroy' do
-    it "deletes the contact from the database"
+    before :each do
+      @contact = create(:contact)
+    end
+
+    it "deletes the contact from the database" do
+      expect{
+        delete :destroy, id: @contact
+      }.to change(Contact, :count).by (-1)
+    end
+
     it "redirects to contacts#index"
   end
 end
