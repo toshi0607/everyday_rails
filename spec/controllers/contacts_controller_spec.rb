@@ -43,7 +43,10 @@ describe ContactsController do
   end
 
   describe 'GET #new' do
-    it "assigns the requested contact to @contact"
+    it "assigns a new Contact contact to @contact" do
+      get :new
+      expect(assigns(:contact)).to be_a_new(Contact)
+    end
     it "renders the :new template"
   end
 
