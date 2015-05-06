@@ -18,6 +18,11 @@ describe UsersController do
         get :index
         expect(response).to render_template :index
       end
+
+      it "GET #new denies access" do
+        get :new
+        expect(response).to redirect_to root_url
+      end
     end
   end
 end
