@@ -84,7 +84,12 @@ describe ContactsController do
             phones_attributes: @phones)
         }.to change(Contact, :count).by(1)
       end
-      it "redirects to contacts#show"
+
+      it "redirects to contacts#show"  do
+        post :create, contact: attributes_for(:contact,
+          phones_attributes: @phones)
+        expect(response).to redirect_to contact_path(assigns[:contact])
+      end
     end
 
     context "with invalid attributes" do
