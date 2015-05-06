@@ -164,6 +164,9 @@ describe ContactsController do
       }.to change(Contact, :count).by (-1)
     end
 
-    it "redirects to contacts#index"
+    it "redirects to contacts#index" do
+      delete :destroy, id: @contact
+      expect(response).to redirect_to contacts_url
+    end
   end
 end
