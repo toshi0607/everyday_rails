@@ -119,6 +119,16 @@ describe ContactsController do
         patch :update, id: @contact, contact: attributes_for(:contact)
         expect(assigns(:contact)).to eq(@contact)
       end
+
+      it "changes @contact's attributes" do
+        patch :update, id: @contact,
+          contact: attributes_for(:contact,
+            firstname: "Larry", lastname: "Smith")
+        @contact.reload
+        expect(@contact.firstname).to eq("Larry")
+        expect(@contact.lastname).to eq("Smith")
+      end
+
       it "redirects to the contact"
     end
 
