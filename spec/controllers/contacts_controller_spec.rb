@@ -18,7 +18,12 @@ describe ContactsController do
     end
 
     context 'without params[:letter]' do
-      it "populates an array of all contacts"
+      it "populates an array of all contacts" do
+        smith = create(:contact, lastname: 'Smith')
+        jones = create(:contact, lastname: 'Jones')
+        get :index
+        expect(assigns(:contacts)).to match_array([smith, jones])
+      end
       it "renders the :index view"
     end
   end
