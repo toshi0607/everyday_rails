@@ -129,7 +129,10 @@ describe ContactsController do
         expect(@contact.lastname).to eq("Smith")
       end
 
-      it "redirects to the contact"
+      it "redirects to the updated contact" do
+        patch :update, id: @contact, contact: attributes_for(:contact)
+        expect(response).to redirect_to @contact
+      end
     end
 
     context "with invalid attributes" do
