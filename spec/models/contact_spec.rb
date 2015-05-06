@@ -4,16 +4,10 @@ describe Contact do
   it "has a valid factory" do
     expect(FactoryGirl.build(:contact)).to be_valid
   end
-  it "is valid with a firstname, lastname and email" do
-    contact = Contact.new(
-      firstname: 'Aaron',
-      lastname: 'Sumner',
-      email: 'tester@exemple.com')
-    expect(contact).to be_valid
-  end
 
   it "is invalid without a firstname" do
-    expect(Contact.new(firstname: nil)).to have(1).errors_on(:firstname)
+    contact = FactoryGirl.build(:contact, firstname: nil)
+    expect(contact).to have(1).errors_on(:firstname)
   end
 
   it "is invalid without a lastname" do
