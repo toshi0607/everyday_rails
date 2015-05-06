@@ -10,8 +10,7 @@ describe Contact do
   end
 
   it "is invalid without a lastname" do
-    contact = FactoryGirl.build(:contact, lastname: nil)
-    expect(contact).to have(1).errors_on(:lastname)
+    expect(build(:contact, lastname: nil)).to have(1).errors_on(:lastname)
   end
 
   it "is invalid without an email address" do
