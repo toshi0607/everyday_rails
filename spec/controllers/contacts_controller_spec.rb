@@ -10,7 +10,11 @@ describe ContactsController do
         get :index, letter: 'S'
         expect(assigns(:contacts)).to match_array([smith])
       end
-      it "renders the :index view"
+
+      it "renders the :index view" do
+        get :index, letter: 'S'
+        expect(response).to render_template :index
+      end
     end
 
     context 'without params[:letter]' do
