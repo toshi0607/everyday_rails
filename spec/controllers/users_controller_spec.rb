@@ -23,6 +23,11 @@ describe UsersController do
         get :new
         expect(response).to redirect_to root_url
       end
+
+      it "POST #create denies access" do
+        post :create, user: attributes_for(:user)
+        expect(response).to redirect_to root_url
+      end
     end
   end
 end
