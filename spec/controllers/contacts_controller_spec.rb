@@ -109,8 +109,16 @@ describe ContactsController do
   end
 
   describe 'PUT #update' do
+    before :each do
+      @contact = create(:contact,
+      firstname: 'Lawrence', lastname: 'Smith')
+    end
+
     context "with valid attributes" do
-      it "updates the contact in the database"
+      it "located the requested @contact" do
+        patch :update, id: @contact, contact: attributes_for(:contact)
+        expect(assigns(:contact)).to eq(@contact)
+      end
       it "redirects to the contact"
     end
 
