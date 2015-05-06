@@ -18,9 +18,8 @@ describe Contact do
   end
 
   it "is invalid with a duplicate email address" do
-    FactoryGirl.create(:contact, email:"aaron@example.com")
-    contact = FactoryGirl.build(:contact, email: "aaron@example.com")
-    expect(contact).to have(1).errors_on(:email)
+    create(:contact, email:"aaron@example.com")
+    expect(build(:contact, email: "aaron@example.com")).to have(1).errors_on(:email)
   end
 
   it "returns a contact's full name as a string" do
