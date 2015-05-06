@@ -24,7 +24,11 @@ describe ContactsController do
         get :index
         expect(assigns(:contacts)).to match_array([smith, jones])
       end
-      it "renders the :index view"
+
+      it "renders the :index view" do
+        get :index
+        expect(response).to render_template :index
+      end
     end
   end
 
