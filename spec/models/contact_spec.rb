@@ -21,12 +21,8 @@ describe Contact do
   end
 
   it "is invalid with a duplicate email address" do
-    Contact.create(
-        firstname: 'Joe', lastname: 'Tester',
-        email: 'tester@example.com')
-    contact = Contact.create(
-      firstname: 'Jane', lastname: 'Tester',
-        email: 'tester@example.com')
+    FactoryGirl.create(:contact, email:"aaron@example.com")
+    contact = FactoryGirl.build(:contact, email: "aaron@example.com")
     expect(contact).to have(1).errors_on(:email)
   end
 
