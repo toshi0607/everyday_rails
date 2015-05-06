@@ -71,9 +71,9 @@ describe ContactsController do
   describe 'POST #create' do
     before :each do
       @phones = [
-          attributes_for(:phone),
-          attributes_for(:phone),
-          attributes_for(:phone)
+        attributes_for(:phone),
+        attributes_for(:phone),
+        attributes_for(:phone)
       ]
     end
 
@@ -99,7 +99,12 @@ describe ContactsController do
             contact: attributes_for(:invalid_contact)
         }.to_not change(Contact, :count)
       end
-      it "re-renders the :new template"
+
+      it "re-renders the :new template" do
+        post :create,
+          contact: attributes_for(:invalid_contact)
+        expect(response).to render_template :new
+      end
     end
   end
 
