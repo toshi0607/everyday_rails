@@ -14,8 +14,7 @@ describe Contact do
   end
 
   it "is invalid without an email address" do
-    contact = FactoryGirl.build(:contact, email: nil)
-    expect(contact).to have(1).errors_on(:email)
+    expect(build(:contact, email: nil)).to have(1).errors_on(:email)
   end
 
   it "is invalid with a duplicate email address" do
