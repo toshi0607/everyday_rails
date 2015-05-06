@@ -60,7 +60,12 @@ describe ContactsController do
       get :edit, id: contact
       expect(assigns(:contact)).to eq contact
     end
-    it "renders the :edit template"
+
+    it "renders the :edit template" do
+      contact = create(:contact)
+      get :edit, id: contact
+      expect(response).to render_template :edit
+    end
   end
 
   describe 'POST #create' do
