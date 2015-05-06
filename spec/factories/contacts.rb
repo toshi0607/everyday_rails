@@ -9,7 +9,7 @@ FactoryGirl.define do
     after(:build) do |contact|
       [:home_phone, :work_phone, :mobile_phone].each do |phone|
         contact.phones << FactoryGirl.build(:phone,
-          phone_type: phone, contact: contact)
+                                            phone_type: phone, contact: contact)
       end
     end
 
