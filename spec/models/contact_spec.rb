@@ -31,9 +31,8 @@ describe Contact do
   end
 
   it "returns a contact's full name as a string" do
-    contact = Contact.new(firstname: 'John', lastname: 'Doe',
-      email: 'johndoe@example.com')
-    expect(contact.name).to eq 'John Doe'
+    contact = FactoryGirl.build(:contact, firstname: 'Jane', lastname: 'Doe')
+    expect(contact.name).to eq 'Jane Doe'
   end
 
   describe "filter last name by letter" do
