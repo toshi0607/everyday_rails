@@ -13,11 +13,7 @@ describe Phone do
   end
 
   it "allows two contacts to share a phone number" do
-    create(:phone,
-      phone_type: 'home',
-      phone: "785-555-1234")
-    expect(build(:phone,
-      phone_type: 'home',
-      phone: "785-555-1234")).to be_valid
+    create(:home_phone, phone: "785-555-1234")
+    expect(build(:home_phone, phone: "785-555-1234")).to be_valid
   end
 end
