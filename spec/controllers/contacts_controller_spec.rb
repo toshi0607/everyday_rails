@@ -69,8 +69,21 @@ describe ContactsController do
   end
 
   describe 'POST #create' do
+    before :each do
+      @phones = [
+          attributes_for(:phone),
+          attributes_for(:phone),
+          attributes_for(:phone)
+      ]
+    end
+
     context "with valid attributes" do
-      it "saves the new contact in the database"
+      it "saves the new contact in the database" do
+        expect{
+          post :create, contact: attributes_for(:contact,
+            phones_attributes: @phones)
+        }.to change(Contact, :count).by(1)
+      end
       it "redirects to contacts#show"
     end
 
