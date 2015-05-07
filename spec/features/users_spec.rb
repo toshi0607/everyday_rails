@@ -20,5 +20,6 @@ feature 'User management' do
       click_button 'Create User'
     }.to change(User, :count).by(1)
     expect(current_path).to eq user_path
+    expect(page).to have_content 'New user created'
   end
 end
