@@ -19,5 +19,6 @@ feature 'User management' do
       find('#password_confirmation').fill_in 'Password confirmation', with: 'secret123'
       click_button 'Create User'
     }.to change(User, :count).by(1)
+    expect(current_path).to eq user_path
   end
 end
