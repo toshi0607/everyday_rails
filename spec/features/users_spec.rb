@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'User management' do
   scenario "adds a new user" do
     admin = create(:admin)
-   sign_in admin
+   # sign_in admin
 
     visit root_path
     click_link 'Log In'
@@ -14,7 +14,7 @@ feature 'User management' do
     visit root_path
     expect{
       click_link 'Users'
-      clicl_link 'New User'
+      click_link 'New User'
       fill_in 'Email', with: 'newuser@example.com'
       find('#password').fill_in 'Password', with: 'secret123'
       find('#password_confirmation').fill_in 'Password confirmation', with: 'secret123'
@@ -23,7 +23,7 @@ feature 'User management' do
 
     save_and_open_page
 
-    expect(current_path).to eq user_path
+    expect(current_path).to eq users_path
     expect(page).to have_content 'New user created'
     within 'h1' do
       expect(page).to have_content 'Users'
