@@ -24,5 +24,6 @@ feature 'User management' do
     within 'h1' do
       expect(page).to have_content 'Users'
     end
+    expect(page).to have_content 'newuser@example.com'
   end
 end
