@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'User management' do
   scenario "adds a new user" do
     admin = create(:admin)
+   sign_in admin
 
     visit root_path
     click_link 'Log In'
@@ -19,6 +20,9 @@ feature 'User management' do
       find('#password_confirmation').fill_in 'Password confirmation', with: 'secret123'
       click_button 'Create User'
     }.to change(User, :count).by(1)
+
+    save_and_open_page
+
     expect(current_path).to eq user_path
     expect(page).to have_content 'New user created'
     within 'h1' do
