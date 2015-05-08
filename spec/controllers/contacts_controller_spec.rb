@@ -1,8 +1,25 @@
 require 'spec_helper'
 
 describe ContactsController do
+  let(:admin) { build_stubbed(:admin) }
+  let(:user) { build_stubbed(:user) }
+
+  let(:contact) { build_stubbed(:contact, firstname: 'Lawrence', lastname: 'Smith') }
+  let(:phones) {
+    [
+      attributes_for(:phone, phone_type: "home")
+      attributes_for(:phone, phone_type: "office")
+      attributes_for(:phone, phone_type: "mobile")
+    ]
+  }
+  let(:valid_attributes) { attributes_for(:contact) }
+  let(:invalid_attirutes) { attributes_for(:invalid_contact) }
+
   before :each do
-    @contact = create(:contact, firstname: 'Lawrence', lastname: 'Smith')
+    allow(Contact).to receive(:persisted?).and_return(true)
+    allow(Contact).to receive(:order).with('lastname, firstname').and_return([contact])
+    allow(Contact).to receive(:find).with(contact.id.to_s).and_return(contact)
+    allow(contavt).to receive(:save).and_return(true)
   end
 
   shared_examples("public access to contacts") do
