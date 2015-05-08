@@ -19,7 +19,7 @@ describe ContactsController do
     allow(Contact).to receive(:persisted?).and_return(true)
     allow(Contact).to receive(:order).with('lastname, firstname').and_return([contact])
     allow(Contact).to receive(:find).with(contact.id.to_s).and_return(contact)
-    allow(contavt).to receive(:save).and_return(true)
+    allow(contact).to receive(:save).and_return(true)
   end
 
   shared_examples("public access to contacts") do
