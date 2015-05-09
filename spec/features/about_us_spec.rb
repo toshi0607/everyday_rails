@@ -7,7 +7,7 @@ feature "About BigCo modal" do
     expect(page).to_not have_content 'About BigCo'
     expect(page).to_not have_content 'BigCo produces the finest widgets in all the land'
 
-    click_link 'About us'
+    click_link 'About Us'
 
     expect(page).to have_content 'About BigCo'
     expect(page).to have_content 'BigCo produces the finest widgets in all the land'
