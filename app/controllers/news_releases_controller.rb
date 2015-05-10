@@ -1,4 +1,5 @@
 class NewsReleasesController < ApplicationController
+  before_action :authenticate, except: [:index, :show]
   before_action :set_news_release, only: [:show, :edit, :update, :destroy]
 
   # GET /news_releases
@@ -28,7 +29,8 @@ class NewsReleasesController < ApplicationController
 
     respond_to do |format|
       if @news_release.save
-        format.html { redirect_to @news_release, notice: 'News release was successfully created.' }
+        format.html { redirect_to news_releases_url,
+                                  notice: 'Successfully created news release.' }
         format.json { render action: 'show', status: :created, location: @news_release }
       else
         format.html { render action: 'new' }
@@ -62,13 +64,13 @@ class NewsReleasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news_release
-      @news_release = NewsRelease.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news_release
+    @news_release = NewsRelease.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def news_release_params
-      params.require(:news_release).permit(:title, :released_on, :body)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def news_release_params
+    params.require(:news_release).permit(:title, :released_on, :body)
+  end
 end
